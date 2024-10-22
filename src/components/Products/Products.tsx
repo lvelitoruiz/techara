@@ -143,17 +143,17 @@ const Products: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>("iPhone");
 
   return (
-    <div className="w-full p-0">
-      <div className="container mx-auto">
-        <h1 className="text-3xl font-base pt-24 pb-[50px] uppercase">
+    <div className="w-full p-0 bg-[#F1F2EE]">
+      <div className="container mx-auto px-4 lg:px-0">
+        <h1 className="text-3xl font-base pt-20 pb-10 md:pt-[120px] md:pb-[70px] uppercase">
           Productos por Categoría
         </h1>
-        <div className="flex space-x-8 mb-0 justify-center">
+        <div className="flex gap-10 mb-0 md:justify-center overflow-auto">
           {Object.keys(productsData.products).map((category) => (
             <p
               key={category}
               onClick={() => setSelectedCategory(category)}
-              className={`px-0 py-2 uppercase text-xl font-light cursor-pointer ${
+              className={`px-0 py-2 uppercase text-[19px] font-light cursor-pointer ${
                 selectedCategory === category
                   ? "border-foreground border-b"
                   : "border-none"

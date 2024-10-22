@@ -32,14 +32,14 @@ const Header: React.FC = () => {
   }, [debouncedSearchTerm]);
 
   return (
-    <header className="bg-background h-[70px] border-b border-gray-200 fixed left-0 top-0 w-full z-50">
-      <div className="w-full bg-background left-0 top-0 mx-auto h-full border-b relative z-20">
-        <div className="container mx-auto h-full flex items-center justify-between">
+    <header className="bg-[#f1f2ee] h-[70px] border-b border-[#d1d1cd] sticky left-0 top-0 w-full z-50">
+      <div className="w-full bg-[#f1f2ee] left-0 top-0 mx-auto h-full border-b relative z-20">
+        <div className="container px-4 lg:px-0 mx-auto h-full flex items-center gap-10">
           <Logo />
           <Navigation onSearchClick={toggleSearchBar} />
         </div>
       </div>
-      <div className={`absolute h-full ${isSearchBarVisible ? 'top-[100%]' : 'top-0'} left-0 bg-background border-t border-b border-gray-200 w-full shadow-md z-10 transition-all duration-300`}>
+      <div className={`absolute h-full ${isSearchBarVisible ? 'top-[100%]' : 'top-0'} left-0 bg-[#f1f2ee] border-b border-[#d1d1cd] w-full shadow-[0_-1px_rgb(26,19,17,0.15)] z-10 transition-all duration-300`}>
         <SearchBar 
           onClose={toggleSearchBar} 
           searchTerm={searchTerm}

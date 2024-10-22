@@ -8,28 +8,30 @@ interface NavigationProps {
 
 const Navigation: React.FC<NavigationProps> = ({ onSearchClick }) => {
   return (
-    <nav>
-      <ul className="flex space-x-8 font-light text-base uppercase">
-        <li>
-          <Link href="/" className="hover:text-blue-500">
+    <nav className="w-full flex justify-between items-center">
+      <ul className="md:flex font-light text-base uppercase items-center gap-10 hidden">
+        <li className="header__primary-nav-item">
+          <Link href="/" className="text-xs tracking-widest">
             Inicio
           </Link>
         </li>
-        <li>
-          <Link href="/productos" className="hover:text-blue-500">
+        <li className="header__primary-nav-item">
+          <Link href="/productos" className="text-xs tracking-widest">
             Productos
           </Link>
         </li>
-        <li>
-          <Link href="/sobre-nosotros" className="hover:text-blue-500">
+        <li className="header__primary-nav-item">
+          <Link href="/sobre-nosotros" className="text-xs tracking-widest">
             Sobre Nosotros
           </Link>
         </li>
-        <li>
-          <Link href="/contacto" className="hover:text-blue-500">
+        <li className="header__primary-nav-item">
+          <Link href="/contacto" className="text-xs tracking-widest">
             Contacto
           </Link>
         </li>
+      </ul>
+      <ul className="flex font-light text-base uppercase items-center gap-5">
         <li>
           <button onClick={onSearchClick}>
             <LinearIcon name="magnifier" size={20} color="" />

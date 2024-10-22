@@ -12,7 +12,7 @@ const InputComponent: React.FC<InputComponentProps> = ({ searchTerm, setSearchTe
       value={searchTerm}
       onChange={(e) => setSearchTerm(e.target.value)}
       placeholder="Buscar productos..."
-      className="w-full bg-background px-4 h-full py-2 flex items-center border-none outline-none text-xl font-thin uppercase"
+      className="w-full bg-background px-4 h-full py-2 flex items-center border-none outline-none text-xl font-thin uppercase tracking-widest"
     />
   );
 };

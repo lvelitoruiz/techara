@@ -2,6 +2,7 @@ import "@/app/globals.css"; // Asegúrate de que la ruta sea correcta
 import React from "react";
 import ApolloWrapper from "@/components/ApolloWrapper";
 import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 export default function RootLayout({
   children,
@@ -20,6 +21,7 @@ export default function RootLayout({
         <ApolloWrapper>
           <Header />
           <main>{children}</main>
+          <Footer />
         </ApolloWrapper>
       </body>
     </html>

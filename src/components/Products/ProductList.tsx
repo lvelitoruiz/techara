@@ -18,12 +18,17 @@ interface ProductListProps {
 
 const ProductList: React.FC<ProductListProps> = ({ products }) => {
   return (
-    <div className="bg-[#d9d9d940] py-20">
-      <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-14">
+    <div className="bg-[#d9d9d940] py-14">
+      <div className="container mx-auto px-4 lg:px-0 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-14">
         {products.map((product) => (
           <ProductCard key={product.model} product={product} />
         ))}
       </div>
+        <div className="flex items-center justify-center mt-5">
+          <a className="g-button left" href="">
+            <span className="font-light tracking-widest">View More</span>
+          </a>
+        </div>
     </div>
   );
 };
