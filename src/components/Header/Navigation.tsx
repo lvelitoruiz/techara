@@ -1,12 +1,37 @@
-import React from "react";
+'use client';
+
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import LinearIcon from "../LinearIcon";
+import CartMenu from "./CartMenu";
+import { useCart } from "@/context/CartContext";
 
 interface NavigationProps {
   onSearchClick: () => void;
 }
 
 const Navigation: React.FC<NavigationProps> = ({ onSearchClick }) => {
+  const [isCartMenuOpen, setIsCartMenuOpen] = useState(false);
+  const { cartCount, syncCart } = useCart();
+
+  // Sincronizar el carrito al montar el componente
+  useEffect(() => {
+    syncCart();
+  }, []);
+
+  // Cerrar el menú del carrito cuando se hace clic fuera
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as HTMLElement;
+      if (isCartMenuOpen && !target.closest('.cart-menu-container')) {
+        setIsCartMenuOpen(false);
+      }
+    };
+
+    document.addEventListener('click', handleClickOutside);
+    return () => document.removeEventListener('click', handleClickOutside);
+  }, [isCartMenuOpen]);
+
   return (
     <nav className="w-full flex justify-between items-center">
       <ul className="md:flex font-light text-base uppercase items-center gap-10 hidden">
@@ -42,10 +67,25 @@ const Navigation: React.FC<NavigationProps> = ({ onSearchClick }) => {
             <LinearIcon name="user" size={20} color="" />
           </Link>
         </li>
-        <li>
-          <Link href="/carrito">
+        <li className="relative cart-menu-container">
+          <button 
+            onClick={(e) => {
+              e.stopPropagation();
+              setIsCartMenuOpen(!isCartMenuOpen);
+            }}
+            className="relative"
+          >
             <LinearIcon name="cart" size={20} color="" />
-          </Link>
+            {cartCount > 0 && (
+              <span className="absolute -top-2 -right-2 bg-[#1a1311] text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                {cartCount}
+              </span>
+            )}
+          </button>
+          <CartMenu 
+            isOpen={isCartMenuOpen} 
+            onClose={() => setIsCartMenuOpen(false)} 
+          />
         </li>
       </ul>
     </nav>

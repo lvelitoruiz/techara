@@ -1,6 +1,7 @@
 import React from "react";
+import Link from "next/link";
 import ProductCard from "./ProductCard";
-import { ProductData } from "@/data/products"; // Importamos el tipo desde el archivo de datos
+import { ProductData } from "@/data/products";
 
 interface ProductListProps {
   products: ProductData[];
@@ -8,6 +9,9 @@ interface ProductListProps {
 }
 
 const ProductList: React.FC<ProductListProps> = ({ products, category }) => {
+  // Normalizar la categoría para la URL
+  const categorySlug = category.toLowerCase();
+
   return (
     <div className="bg-[#d9d9d940] py-14">
       <div className="container mx-auto px-4 lg:px-0 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-14">
@@ -20,9 +24,12 @@ const ProductList: React.FC<ProductListProps> = ({ products, category }) => {
         ))}
       </div>
       <div className="flex items-center justify-center mt-5">
-        <a className="g-button left" href="">
+        <Link 
+          href={`/producto/${categorySlug}`} 
+          className="g-button left"
+        >
           <span className="font-light tracking-widest">View More</span>
-        </a>
+        </Link>
       </div>
     </div>
   );

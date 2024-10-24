@@ -1,6 +1,7 @@
-import "@/app/globals.css"; // Asegúrate de que la ruta sea correcta
+import "@/app/globals.css";
 import React from "react";
 import ApolloWrapper from "@/components/ApolloWrapper";
+import { CartProvider } from "@/context/CartContext";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
@@ -18,11 +19,13 @@ export default function RootLayout({
         />
       </head>
       <body>
-        <ApolloWrapper>
-          <Header />
-          <main>{children}</main>
-          <Footer />
-        </ApolloWrapper>
+        <CartProvider>
+          <ApolloWrapper>
+            <Header />
+            <main>{children}</main>
+            <Footer />
+          </ApolloWrapper>
+        </CartProvider>
       </body>
     </html>
   );

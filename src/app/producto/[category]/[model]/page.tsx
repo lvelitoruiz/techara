@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { productsData, ProductData } from "@/data/products";
 import Accordion from "@/components/Acoordion";
+import { useCart } from "@/context/CartContext";
 
 interface ProductDetailProps {
   params: {
@@ -11,6 +12,11 @@ interface ProductDetailProps {
     model: string;
   };
 }
+
+interface AccordionItem {
+    title: string;
+    content: React.ReactNode;
+  }
 
 const getCategoryKey = (category: string): string => {
   const categoryMap: { [key: string]: string } = {
@@ -28,6 +34,23 @@ const ProductDetail = ({ params }: ProductDetailProps) => {
   const [product, setProduct] = useState<ProductData | null>(null);
   const [selectedStorage, setSelectedStorage] = useState<string>("");
   const [selectedColor, setSelectedColor] = useState<string>("");
+
+  const { addToCart } = useCart();
+
+  const handleAddToCart = () => {
+    if (!product) return;
+  
+    addToCart({
+      product,
+      quantity: 1,
+      selectedStorage,
+      selectedColor,
+      selectedSize: product.caseSizes?.[0],
+      selectedConnectivity: Array.isArray(product.connectivity) 
+        ? product.connectivity[0] 
+        : product.connectivity
+    });
+  };
 
   useEffect(() => {
     const categoryKey = getCategoryKey(params.category);
@@ -201,7 +224,7 @@ const ProductDetail = ({ params }: ProductDetailProps) => {
             </div>
           )}
 
-          <button className="w-full g-button left">
+          <button className="w-full g-button left" onClick={handleAddToCart}>
             Agregar al carrito
           </button>
 

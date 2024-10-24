@@ -2,6 +2,7 @@
 
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 import { useEffect, useState } from 'react';
+import { CartProvider } from '@/context/CartContext';
 
 export default function ApolloWrapper({ children }: { children: React.ReactNode }) {
   const [client, setClient] = useState<ApolloClient<any> | null>(null);
@@ -19,5 +20,11 @@ export default function ApolloWrapper({ children }: { children: React.ReactNode 
     return null;
   }
 
-  return <ApolloProvider client={client}>{children}</ApolloProvider>;
+  return (
+    <ApolloProvider client={client}>
+      <CartProvider>
+        {children}
+      </CartProvider>
+    </ApolloProvider>
+  );
 }
