@@ -29,23 +29,23 @@ const CartNotification: React.FC<CartNotificationProps> = ({
   if (!isVisible) return null;
 
   const bgColor = {
-    success: 'bg-[#f1f2ee]',
-    error: 'bg-red-50',
-    info: 'bg-blue-50'
+    success: 'bg-[#7e807c]',
+    error: 'bg-[#F5222D]',
+    info: 'bg-[#7e807c]'
   }[type];
 
   const textColor = {
-    success: 'text-[#1a1311]',
-    error: 'text-red-800',
-    info: 'text-blue-800'
+    success: 'text-white',
+    error: 'text-white',
+    info: 'text-white'
   }[type];
 
   return (
-    <div className={`fixed top-20 right-4 z-50 ${bgColor} border border-[#d1d1cd] p-4 rounded-sm shadow-lg max-w-sm`}>
+    <div className={`fixed top-20 right-4 z-50 ${bgColor} p-4 rounded-sm shadow-lg max-w-sm`}>
       <div className="flex items-center gap-2">
         <span className={`${textColor} text-sm tracking-widest`}>{message}</span>
-        <button onClick={onClose} className="ml-2">
-          <LinearIcon name="cross" size={16} />
+        <button onClick={onClose} className="ml-2 text-white">
+          <LinearIcon className='text-white' name="cross" size={16} />
         </button>
       </div>
     </div>

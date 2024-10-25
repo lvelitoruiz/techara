@@ -33,7 +33,7 @@ const Navigation: React.FC<NavigationProps> = ({ onSearchClick }) => {
   }, [isCartMenuOpen]);
 
   return (
-    <nav className="w-full flex justify-between items-center">
+    <nav className="w-full flex justify-end lg:justify-between items-center">
       <ul className="md:flex font-light text-base uppercase items-center gap-10 hidden">
         <li className="header__primary-nav-item">
           <Link href="/" className="text-xs tracking-widest">
@@ -86,6 +86,9 @@ const Navigation: React.FC<NavigationProps> = ({ onSearchClick }) => {
             isOpen={isCartMenuOpen} 
             onClose={() => setIsCartMenuOpen(false)} 
           />
+        </li>
+        <li>
+          <LinearIcon name="menu" size={20} color="" />
         </li>
       </ul>
     </nav>

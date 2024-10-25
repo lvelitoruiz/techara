@@ -17,10 +17,10 @@ const CartMenu: React.FC<CartMenuProps> = ({ isOpen, onClose }) => {
   if (!isOpen) return null;
 
   return (
-    <div className="absolute top-full right-0 w-96 bg-[#f1f2ee] border border-[#d1d1cd] shadow-lg">
+    <div className="fixed lg:absolute top-[68px] lg:top-full right-0 w-screen lg:w-96 bg-[#f1f2ee] border border-[#d1d1cd] shadow-lg">
       <div className="p-4">
         <div className="flex justify-between items-center mb-4">
-          <h3 className="text-xs uppercase tracking-widest">Carrito</h3>
+          <h3 className="text-xs uppercase tracking-widest font-semibold">Carrito</h3>
           <button onClick={onClose}>
             <LinearIcon name="cross" size={16} />
           </button>
@@ -41,27 +41,29 @@ const CartMenu: React.FC<CartMenuProps> = ({ isOpen, onClose }) => {
                     className="object-cover bg-[#e2e3de]"
                   />
                   <div className="flex-1">
-                    <h4 className="text-xs uppercase tracking-widest">{item.product.model}</h4>
-                    {item.selectedStorage && (
-                      <p className="text-xs text-[#1a1311a6]">{item.selectedStorage}</p>
-                    )}
-                    {item.selectedColor && (
-                      <p className="text-xs text-[#1a1311a6]">{item.selectedColor}</p>
-                    )}
+                    <div className='min-h-[48px]'>
+                      <h4 className="text-xs uppercase tracking-widest">{item.product.model}</h4>
+                      {item.selectedStorage && (
+                        <p className="text-xs text-[#1a1311a6]">{item.selectedStorage}</p>
+                      )}
+                      {item.selectedColor && (
+                        <p className="text-xs text-[#1a1311a6]">{item.selectedColor}</p>
+                      )}
+                      </div>
                     <div className="flex justify-between items-center mt-2">
-                      <div className="flex items-center gap-2">
+                      <div className="flex items-center border h-[26px]">
                         <button 
                           onClick={() => updateQuantity(item.product.model, item.quantity - 1)}
-                          className="text-[#1a1311a6] hover:text-[#1a1311]"
+                          className="text-[#1a1311a6] hover:text-[#1a1311] h-[26px] w-[26px]"
                         >
-                          <LinearIcon name="minus" size={16} />
+                          -
                         </button>
                         <span className="text-xs w-6 text-center">{item.quantity}</span>
                         <button 
                           onClick={() => updateQuantity(item.product.model, item.quantity + 1)}
-                          className="text-[#1a1311a6] hover:text-[#1a1311]"
+                          className="text-[#1a1311a6] hover:text-[#1a1311] h-[26px] w-[26px]"
                         >
-                          <LinearIcon name="plus" size={16} />
+                          +
                         </button>
                       </div>
                       <button 
@@ -75,10 +77,10 @@ const CartMenu: React.FC<CartMenuProps> = ({ isOpen, onClose }) => {
                 </div>
               ))}
             </div>
-            <div className="border-t border-[#d1d1cd] mt-4 pt-4">
+            <div className="mt-4 pt-4">
               <div className="flex justify-between mb-4">
-                <span className="text-xs uppercase tracking-widest">Total</span>
-                <span className="text-xs">S/.{cartTotal.toFixed(2)}</span>
+                <span className="text-xs uppercase tracking-widest font-semibold">Total</span>
+                <span className="text-xs font-semibold">S/.{cartTotal.toFixed(2)}</span>
               </div>
               <Link 
                 href="/checkout" 
